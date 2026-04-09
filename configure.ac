@@ -27,11 +27,16 @@ AC_PROG_MAKE_SET
 PKG_PROG_PKG_CONFIG
 
 # Checks for libraries with user.
-AC_ARG_WITH([qmif-prefix],
-    [AS_HELP_STRING([--with-qmif-prefix=PATH], [Path to qmi-framework installation])],
-    [QMIF=$withval], [QMIF=/usr/local])
-QMIF_CFLAGS="-I ${QMIF}/include/qmi_framework"
-QMIF_LIBS="-L${QMIF}/lib/"
+AC_ARG_WITH([qmi-prefix],
+    [AS_HELP_STRING([--with-qmi-prefix=PATH],
+     [Fallback path to qmi-framework if pkg-config cannot find it])],
+    [QMIF_PREFIX=$withval], [QMIF_PREFIX=])
+PKG_CHECK_MODULES([QMIF], [qmi-framework],
+    [QMIF_CFLAGS="-I`$PKG_CONFIG --variable=prefix qmi-framework`/include/qmi_framework"],
+    [AS_IF([test -n "$QMIF_PREFIX"],
+        [QMIF_CFLAGS="-I${QMIF_PREFIX}/include/qmi_framework"
+         QMIF_LIBS="-L${QMIF_PREFIX}/lib -lqcci -lqcsi -lqencdec -lqmi_common"],
+        [AC_MSG_ERROR([qmi-framework not found via pkg-config and --with-qmi-prefix not specified])])])
 AC_SUBST([QMIF_CFLAGS])
 AC_SUBST([QMIF_LIBS])
 CFLAGS="$CFLAGS  -DSYSLOG_ENABLE"
@@ -41,14 +46,6 @@ PKG_CHECK_MODULES(GLIB, glib-2.0 >= 2.16, dummy=yes, AC_MSG_ERROR(GLib >= 2.16 i
 GLIB_LIBS="$GLIB_LIBS $GTHREAD_LIBS"
 AC_SUBST(GLIB_LIBS)
 
-# Systemd service file installation directory (no systemd dependency required)
-AC_ARG_WITH([systemdsystemunitdir],
-    [AS_HELP_STRING([--with-systemdsystemunitdir=DIR], 
-     [Directory for systemd service files (default: ${prefix}/lib/systemd/system)])],
-    [systemdsystemunitdir=$withval],
-    [systemdsystemunitdir='${prefix}/lib/systemd/system'])
-
-AC_SUBST([systemdsystemunitdir])
 
 AC_CONFIG_FILES([ \
         Makefile \
