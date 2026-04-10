@@ -45,7 +45,12 @@ echo "Running autoreconf.."
 autoreconf --install || { echo "Autoreconf failed"; exit 1; }
 
 echo "Running configure.."
-./configure --host=$HOST_ARCH  --with-qmif-prefix=$QMI_PREFIX --prefix=$(pwd)/install || { echo "configure failed"; exit 1; }
+if [ -n "$QMI_PREFIX" ]; then
+    export PKG_CONFIG_PATH="${QMI_PREFIX}/lib/pkgconfig:${PKG_CONFIG_PATH}"
+    ./configure --host=$HOST_ARCH --with-qmi-prefix=$QMI_PREFIX --prefix=$(pwd)/install || { echo "configure failed"; exit 1; }
+else
+    ./configure --host=$HOST_ARCH --prefix=$(pwd)/install || { echo "configure failed"; exit 1; }
+fi
 
 echo "Running make.."
 make || { echo "make failed"; exit 1; }
