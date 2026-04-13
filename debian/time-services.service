@@ -1,0 +1,22 @@
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# All rights reserved.
+# Confidential and Proprietary - Qualcomm Technologies, Inc.
+#
+
+[Unit]
+Description=time serviced Service
+SourcePath=/usr/bin/time_daemon
+After= var-lib.mount mount-var-lib.service
+
+[Service]
+User=rtc
+Group=rtc
+Restart=always
+RemainAfterExit=yes
+CapabilityBoundingSet=CAP_SYS_TIME
+AmbientCapabilities=CAP_SYS_TIME
+ExecStartPre=+mkdir -p /var/lib/time
+ExecStart=/usr/bin/time_daemon
+
+[Install]
+WantedBy=multi-user.target
