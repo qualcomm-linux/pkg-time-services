@@ -1,3 +1,9 @@
+time-services (0.1.2-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- GitHub Service Bot <githubservice@qti.qualcomm.com>  Mon, 13 Apr 2026 09:09:23 +0000
+
 time-services (0.1.2) noble; urgency=medium
 
   * Discover qmi-framework with pkg-config.
