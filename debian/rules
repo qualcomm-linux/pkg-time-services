@@ -2,3 +2,10 @@
 
 %:
 	dh $@
+
+override_dh_auto_configure:
+	dh_auto_configure -- CFLAGS=-DSYSLOG_ENABLE
+
+override_dh_auto_install:
+	dh_auto_install --destdir=debian/tmp
+	dh_installsysusers
