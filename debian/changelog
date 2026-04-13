@@ -1,5 +1,11 @@
-template-package-name (1.0.0-1) UNRELEASED; urgency=medium
+time-services (0.1.2) noble; urgency=medium
 
-  * Populate.
+  * Discover qmi-framework with pkg-config.
 
- -- Github Service Bot <githubservice@qti.qualcomm.com>  Tue, 07 Oct 2025 14:21:59 -0700
+ -- Jairaj Solanki <jsolanki@qti.qualcomm.com>  Mon, 13 Apr 2026 14:18:47 +0530
+
+time-services (0.1.1) noble; urgency=medium
+
+  * Initial release.
+
+ -- Jairaj Solanki <jsolanki@qti.qualcomm.com>  Wed, 15 Jan 2025 06:26:25 +0000
