@@ -1,8 +1,8 @@
-time-services (0.1.2-1) UNRELEASED; urgency=medium
+time-services (0.1.2-1) unstable; urgency=medium
 
   * New upstream release
 
- -- GitHub Service Bot <githubservice@qti.qualcomm.com>  Mon, 13 Apr 2026 10:12:09 +0000
+ -- GitHub Service Bot <githubservice@qti.qualcomm.com>  Tue, 19 May 2026 11:03:27 +0000
 
 time-services (0.1.2) noble; urgency=medium
 
