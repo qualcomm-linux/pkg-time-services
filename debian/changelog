@@ -1,3 +1,9 @@
+time-services (0.1.2-3~) UNRELEASED; urgency=medium
+
+  * WIP — update changelog before next release
+
+ -- Jairaj Solanki <jsolanki@qti.qualcomm.com>  Wed, 17 Jun 2026 13:16:36 +0000
+
 time-services (0.1.2-2) resolute; urgency=medium
 
   [ Jairaj Solanki ]
