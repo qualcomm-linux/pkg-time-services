@@ -4,11 +4,15 @@ Priority: optional
 Maintainer: Jairaj Solanki <jsolanki@qti.qualcomm.com>
 Build-Depends: debhelper-compat (= 13), pkgconf, libglib2.0-dev, libqmi-framework-dev, libqrtr-dev
 Standards-Version: 4.6.2
-Homepage: http://support.cdmatech.com
+Homepage: https://github.com/quic/time-services
+Vcs-Git: https://github.com/qualcomm-linux/pkg-time-services.git -b debian/qcom-next
+Vcs-Browser: https://github.com/qualcomm-linux/pkg-time-services
 
 Package: time-services
 Architecture: arm64
 Section: misc
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Qualcomm time deamon
+Description: Qualcomm time daemon
+ The time-services daemon synchronises time from the modem to the applications
+ processor and maintains time offsets across reboots, once set from any source.
 
