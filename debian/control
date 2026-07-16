@@ -4,6 +4,7 @@ Priority: optional
 Maintainer: Jairaj Solanki <jsolanki@qti.qualcomm.com>
 Build-Depends:
  debhelper-compat (= 13),
+Build-Depends-Arch:
  libglib2.0-dev,
  libqmi-framework-dev,
  libqrtr-dev,
