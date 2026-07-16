@@ -1,5 +1,6 @@
-time-services (0.1.2-0qli+staging1~) UNRELEASED; urgency=medium
+time-services (0.1.2-0qli+staging1) forky; urgency=medium
 
+  [ Agathe Porte ]
   * Initial release.
 
- -- Agathe Porte <agathe.porte@oss.qualcomm.com>  Thu, 16 Jul 2026 11:14:54 +0200
+ -- root <root@9cedef2a4d65>  Thu, 16 Jul 2026 11:57:42 +0000
