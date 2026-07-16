@@ -17,7 +17,6 @@ Vcs-Browser: https://github.com/qualcomm-linux/pkg-time-services
 
 Package: time-services
 Architecture: arm64
-Section: misc
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
