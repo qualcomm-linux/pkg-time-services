@@ -1,6 +1,5 @@
 Source: time-services
 Section: utils
-Priority: optional
 Maintainer: Jairaj Solanki <jsolanki@qti.qualcomm.com>
 Uploaders:
  Agathe Porte <agathe.porte@oss.qualcomm.com>,
