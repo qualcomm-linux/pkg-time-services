@@ -1,8 +1,9 @@
-time-services (0.1.2-0qli+staging1~bpo13+1~) UNRELEASED; urgency=medium
+time-services (0.1.2-0qli+staging1~bpo13+1) trixie; urgency=medium
 
+  [ Agathe Porte ]
   * Rebuild for trixie.
 
- -- Agathe Porte <agathe.porte@oss.qualcomm.com>  Thu, 16 Jul 2026 14:02:44 +0200
+ -- root <root@03dc250e1f83>  Thu, 16 Jul 2026 12:04:17 +0000
 
 time-services (0.1.2-0qli+staging1) forky; urgency=medium
 
