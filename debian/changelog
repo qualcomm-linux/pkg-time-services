@@ -2,11 +2,11 @@ time-services (0.1.2-0qli+staging2~) UNRELEASED; urgency=medium
 
   * Unreleased changes
 
- -- root <root@965cdc07dbd0>  Thu, 16 Jul 2026 11:59:54 +0000
+ -- Debusine Action Release Bot <noreply@release-bot.invalid>  Thu, 16 Jul 2026 11:59:54 +0000
 
 time-services (0.1.2-0qli+staging1) forky; urgency=medium
 
   [ Agathe Porte ]
   * Initial release.
 
- -- root <root@9cedef2a4d65>  Thu, 16 Jul 2026 11:57:42 +0000
+ -- Debusine Action Release bot <noreply@release-bot.invalid>  Thu, 16 Jul 2026 11:57:42 +0000
