@@ -1,0 +1,38 @@
+#!/bin/sh
+# The unit is only startable on Qualcomm hardware with a reachable modem, so
+# check what can be checked off-target: that it parses, that it does not
+# revoke its own CAP_SYS_TIME, and that it declares its state directory.
+#
+# The unit file is read directly rather than via "systemctl show" so that this
+# works in a container where systemd is not PID 1.
+set -eu
+
+unit=/usr/lib/systemd/system/time-services.service
+
+out=$(systemd-analyze verify "$unit" 2>&1 |
+	grep -v 'Command /usr/bin/time_daemon is not executable' || true)
+if [ -n "$out" ]; then
+	echo "ERROR: unit failed verification:" >&2
+	echo "$out" >&2
+	exit 1
+fi
+
+# ProtectClock=yes would revoke CAP_SYS_TIME and break settimeofday(2), which
+# is the daemon's entire purpose.
+if grep -Eq '^ProtectClock=(yes|true|1|on)' "$unit"; then
+	echo "ERROR: ProtectClock= conflicts with CAP_SYS_TIME" >&2
+	exit 1
+fi
+
+# Without this the daemon cannot create its offset file under /var/lib/time.
+if ! grep -q '^StateDirectory=time$' "$unit"; then
+	echo "ERROR: StateDirectory=time not set" >&2
+	exit 1
+fi
+
+if ! grep -q '^AmbientCapabilities=CAP_SYS_TIME$' "$unit"; then
+	echo "ERROR: CAP_SYS_TIME not granted" >&2
+	exit 1
+fi
+
+echo "OK"

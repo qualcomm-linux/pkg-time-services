@@ -1,0 +1,36 @@
+time-services for Debian
+========================
+
+System user and RTC ownership
+-----------------------------
+
+The daemon does not run as root.  Installing this package creates a system
+user and group named "rtc" (via /usr/lib/sysusers.d/time-services.conf) and
+installs a udev rule that hands /dev/rtc0 to that group:
+
+  ACTION=="add", KERNEL=="rtc0", SUBSYSTEM=="rtc", OWNER="rtc", GROUP="rtc", MODE="0640"
+
+The mode is deliberately read-only for the group: time_daemon only issues
+RTC_RD_TIME, never RTC_SET_TIME.  It adjusts the system clock with
+settimeofday(2), for which the unit grants it CAP_SYS_TIME and nothing more.
+
+Because the udev rule only fires on "add", /dev/rtc0 keeps its previous
+ownership until the next reboot or until the rule is replayed:
+
+  udevadm trigger --subsystem-match=rtc --action=add
+
+State
+-----
+
+Time offsets are persisted in /var/lib/time, created by the service unit's
+StateDirectory= and owned by the rtc user.  The path is compiled into the
+daemon (OFFSET_LOCATION in time_genoff.h) and is not configurable.
+
+Hardware requirements
+---------------------
+
+time_daemon talks to the modem over QMI and is only useful on Qualcomm
+platforms with a modem reachable through libqmi-framework.  On other
+hardware the service will start and fail to reach the QMI time service.
+
+ -- Christopher Obbard <chris.obbard@oss.qualcomm.com>, Thu, 20 Aug 2026 00:00:00 +0000

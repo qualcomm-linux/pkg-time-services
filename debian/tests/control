@@ -1,0 +1,11 @@
+Tests: installed-files
+Depends: @, binutils
+Restrictions: superficial
+
+Tests: unit-file
+Depends: @, systemd
+Restrictions: superficial
+
+Tests: sysuser
+Depends: @
+Restrictions: needs-root

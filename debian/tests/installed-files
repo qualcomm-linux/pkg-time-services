@@ -1,0 +1,17 @@
+#!/bin/sh
+# Check that the package ships what it claims to ship.
+set -eu
+
+test -x /usr/bin/time_daemon
+test -f /usr/lib/sysusers.d/time-services.conf
+test -f /usr/lib/systemd/system/time-services.service
+test -f /usr/lib/udev/rules.d/60-time-services.rules
+
+# The daemon must not have picked up a link against glib, which nothing in
+# the source actually uses.
+if objdump -p /usr/bin/time_daemon | grep -q 'NEEDED.*libglib'; then
+	echo "ERROR: time_daemon is linked against glib" >&2
+	exit 1
+fi
+
+echo "OK"
