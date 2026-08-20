@@ -4,11 +4,11 @@ Upstream-Contact: https://github.com/quic/time-services/issues
 Source: https://github.com/quic/time-services
 
 Files: *
-Copyright: 2024 Qualcomm Innovation Center, Inc.
+Copyright: 2024-2025 Qualcomm Innovation Center, Inc.
 License: BSD-3-Clause
 
 Files: debian/*
-Copyright: 2024 Qualcomm Innovation Center, Inc.
+Copyright: 2026 Qualcomm Technologies, Inc.
 License: BSD-3-Clause
 
 License: BSD-3-Clause
