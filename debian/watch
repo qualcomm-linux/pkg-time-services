@@ -1,0 +1,8 @@
+version=4
+
+# Upstream publishes releases as git tags only, so generate the tarball from
+# the tag rather than relying on GitHub's auto-generated archives, which are
+# not byte-stable.
+opts=mode=git,pgpmode=none \
+https://github.com/quic/time-services.git \
+refs/tags/v@ANY_VERSION@ debian

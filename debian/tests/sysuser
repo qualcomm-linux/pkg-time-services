@@ -1,0 +1,16 @@
+#!/bin/sh
+# The daemon runs as rtc and persists its offsets under /var/lib/time.  If the
+# user is missing, or the state directory is not writable by it, the daemon
+# silently fails to persist any offset across reboots.
+set -eu
+
+getent passwd rtc >/dev/null || { echo "ERROR: rtc user missing" >&2; exit 1; }
+getent group rtc >/dev/null || { echo "ERROR: rtc group missing" >&2; exit 1; }
+
+# StateDirectory= creates /var/lib/time on first start; emulate that here and
+# confirm the daemon's user can actually create its offset file.
+install -d -o rtc -g rtc -m 0700 /var/lib/time
+runuser -u rtc -- touch /var/lib/time/ats_test
+runuser -u rtc -- rm -f /var/lib/time/ats_test
+
+echo "OK"
