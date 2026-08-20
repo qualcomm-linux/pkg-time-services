@@ -4,16 +4,17 @@ Maintainer: Jairaj Solanki <jsolanki@qti.qualcomm.com>
 Uploaders:
  Agathe Porte <agathe.porte@oss.qualcomm.com>,
 Build-Depends:
- debhelper-compat (= 13),
+ debhelper-compat (= 14),
 Build-Depends-Arch:
  libglib2.0-dev,
  libqmi-framework-dev,
  libqrtr-dev,
  pkgconf,
 Standards-Version: 4.7.4
+Rules-Requires-Root: no
 Homepage: https://github.com/quic/time-services
-Vcs-Git: https://github.com/qualcomm-linux/pkg-time-services.git -b debian/qcom-next
-Vcs-Browser: https://github.com/qualcomm-linux/pkg-time-services
+Vcs-Git: https://github.com/qualcomm-linux/pkg-time-services.git -b qli-staging/debian/latest
+Vcs-Browser: https://github.com/qualcomm-linux/pkg-time-services/tree/qli-staging/debian/latest
 
 Package: time-services
 Architecture: arm64
