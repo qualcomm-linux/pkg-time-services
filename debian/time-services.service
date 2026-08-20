@@ -2,19 +2,41 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 [Unit]
-Description=time serviced Service
-SourcePath=/usr/bin/time_daemon
-After= var-lib.mount mount-var-lib.service
+Description=Qualcomm time services daemon
+Documentation=https://github.com/quic/time-services
 
 [Service]
+Type=simple
 User=rtc
 Group=rtc
+ExecStart=/usr/bin/time_daemon
 Restart=always
-RemainAfterExit=yes
+
+# Creates /var/lib/time owned by User=/Group=, which is where the daemon
+# persists its time offsets (OFFSET_LOCATION in time_genoff.h).
+StateDirectory=time
+
+# Needed for settimeofday(2).
 CapabilityBoundingSet=CAP_SYS_TIME
 AmbientCapabilities=CAP_SYS_TIME
-ExecStartPre=+mkdir -p /var/lib/time
-ExecStart=/usr/bin/time_daemon
+
+# Sandboxing. Note that ProtectClock= must NOT be set here: it would revoke
+# CAP_SYS_TIME and block the clock writes that are this daemon's entire job.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectControlGroups=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+SystemCallArchitectures=native
+UMask=0077
 
 [Install]
 WantedBy=multi-user.target
