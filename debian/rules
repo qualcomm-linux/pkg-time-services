@@ -1,10 +1,12 @@
 #!/usr/bin/make -f
 
-export DEB_BUILD_MAINT_OPTIONS=hardening=+all
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+# Upstream links -lpthread and @GLIB_LIBS@ via time_daemon_LDFLAGS, which
+# places them ahead of the objects on the link line.  Nothing in the source
+# includes glib.h, so --as-needed drops the resulting spurious NEEDED entry
+# on libglib-2.0 and with it a spurious ${shlibs:Depends} entry.
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
 
 %:
-	dh $@
-
-override_dh_auto_install:
-	dh_auto_install --destdir=debian/tmp
-	dh_installsysusers
+	dh $@ --without single-binary
