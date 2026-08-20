@@ -11,7 +11,6 @@ Build-Depends-Arch:
  libqrtr-dev,
  pkgconf,
 Standards-Version: 4.7.4
-Rules-Requires-Root: no
 Homepage: https://github.com/quic/time-services
 Vcs-Git: https://github.com/qualcomm-linux/pkg-time-services.git -b qli-staging/debian/latest
 Vcs-Browser: https://github.com/qualcomm-linux/pkg-time-services/tree/qli-staging/debian/latest

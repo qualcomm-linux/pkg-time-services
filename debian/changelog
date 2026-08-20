@@ -10,12 +10,10 @@ time-services (0.1.2-0qli+staging2~) UNRELEASED; urgency=medium
     Restart=always, set Type= and Documentation=, fix the Description, set
     UMask=0077, and add sandboxing.
   * d/control: bump to debhelper compat 14.
-  * d/control: add Rules-Requires-Root: no.
   * d/control: point Vcs-Git and Vcs-Browser at the branch that carries this
     packaging.
   * d/rules: drop the dh_auto_install override; compat 14 runs
     dh_installsysusers in the correct place in the sequence.
-  * d/rules: link with --as-needed to drop an unused libglib-2.0 dependency.
   * d/time-services.install: install the binary by name instead of globbing.
   * d/gbp.conf: correct debian-tag and set upstream-branch to match the
     branches and tags actually in use.
