@@ -1,8 +1,32 @@
 time-services (0.1.2-0qli+staging2~) UNRELEASED; urgency=medium
 
-  * Unreleased changes
+  [ Christopher Obbard ]
+  * d/time-services.service: replace the root-owned "ExecStartPre=+mkdir -p
+    /var/lib/time" with StateDirectory=time.  The daemon runs as User=rtc and
+    could not create its offset file in the root-owned directory, so no time
+    offset was ever persisted across reboots.
+  * d/time-services.service: drop misused SourcePath=, drop After= on units
+    that do not exist on Debian, drop RemainAfterExit= which contradicts
+    Restart=always, set Type= and Documentation=, fix the Description, set
+    UMask=0077, and add sandboxing.
+  * d/control: bump to debhelper compat 14.
+  * d/control: add Rules-Requires-Root: no.
+  * d/control: point Vcs-Git and Vcs-Browser at the branch that carries this
+    packaging.
+  * d/rules: drop the dh_auto_install override; compat 14 runs
+    dh_installsysusers in the correct place in the sequence.
+  * d/rules: link with --as-needed to drop an unused libglib-2.0 dependency.
+  * d/time-services.install: install the binary by name instead of globbing.
+  * d/gbp.conf: correct debian-tag and set upstream-branch to match the
+    branches and tags actually in use.
+  * d/copyright: correct the copyright years and the debian/* holder.
+  * d/watch: add, using mode=git against upstream's release tags.
+  * d/tests: add autopkgtests covering the shipped files, the unit's
+    StateDirectory and CAP_SYS_TIME properties, and the rtc user's ability to
+    write to /var/lib/time.
+  * d/README.Debian: document the rtc system user and /dev/rtc0 ownership.
 
- -- Debusine Action Release Bot <noreply@release-bot.invalid>  Thu, 16 Jul 2026 11:59:54 +0000
+ -- Christopher Obbard <chris.obbard@oss.qualcomm.com>  Thu, 20 Aug 2026 04:45:00 +0000
 
 time-services (0.1.2-0qli+staging1) forky; urgency=medium
 
