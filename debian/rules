@@ -7,4 +7,3 @@ export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 override_dh_auto_install:
 	dh_auto_install --destdir=debian/tmp
-	dh_installsysusers
