@@ -9,11 +9,16 @@ After= var-lib.mount mount-var-lib.service
 [Service]
 User=rtc
 Group=rtc
-Restart=always
+StateDirectory=time
+Restart=on-failure
 RemainAfterExit=yes
 CapabilityBoundingSet=CAP_SYS_TIME
 AmbientCapabilities=CAP_SYS_TIME
 ExecStart=/usr/bin/time_daemon
+
+# Device access for RTC (read-only)
+DeviceAllow=/dev/rtc0 r
+DevicePolicy=closed
 
 [Install]
 WantedBy=multi-user.target
