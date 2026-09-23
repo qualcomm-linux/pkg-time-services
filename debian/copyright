@@ -1,14 +1,16 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: time-services
-Upstream-Contact: https://github.com/quic/time-services/issues
-Source: https://github.com/quic/time-services
+Upstream-Contact: https://github.com/qualcomm/time-services/issues
+Source: https://github.com/qualcomm/time-services
 
 Files: *
 Copyright: 2024 Qualcomm Innovation Center, Inc.
+           Qualcomm Technologies, Inc. and/or its subsidiaries
 License: BSD-3-Clause
 
 Files: debian/*
 Copyright: 2024 Qualcomm Innovation Center, Inc.
+           Qualcomm Technologies, Inc. and/or its subsidiaries
 License: BSD-3-Clause
 
 License: BSD-3-Clause
