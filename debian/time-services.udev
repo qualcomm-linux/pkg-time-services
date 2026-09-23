@@ -1,1 +1,1 @@
-ACTION=="add", KERNEL=="rtc0", SUBSYSTEM=="rtc", OWNER="root", GROUP="_qcom-time", MODE="0640"
+ACTION=="add|change", KERNEL=="rtc0", SUBSYSTEM=="rtc", OWNER="root", GROUP="_qcom-time", MODE="0640"
