@@ -14,7 +14,7 @@ Build-Depends-Arch:
  pkgconf,
 Standards-Version: 4.7.4
 Homepage: https://github.com/quic/time-services
-Vcs-Git: https://github.com/qualcomm-linux/pkg-time-services.git -b debian/qcom-next
+Vcs-Git: https://github.com/qualcomm-linux/pkg-time-services.git
 Vcs-Browser: https://github.com/qualcomm-linux/pkg-time-services
 
 Package: time-services
