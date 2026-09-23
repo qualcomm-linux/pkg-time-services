@@ -2,11 +2,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 [Unit]
-Description=time serviced Service
+Description=Qualcomm time services daemon
+Documentation=https://github.com/qualcomm/time-services
 
 [Service]
 User=_qcom-time
 Group=_qcom-time
+# Creates the persistent offset directory owned by User=/Group=.
 StateDirectory=time
 Restart=on-failure
 CapabilityBoundingSet=CAP_SYS_TIME
@@ -16,6 +18,23 @@ ExecStart=/usr/sbin/time_daemon
 # Device access for RTC (read-only)
 DeviceAllow=/dev/rtc0 r
 DevicePolicy=closed
+
+# ProtectClock=yes would revoke CAP_SYS_TIME and prevent clock updates.
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+ProtectControlGroups=yes
+ProtectKernelLogs=yes
+ProtectKernelModules=yes
+ProtectKernelTunables=yes
+LockPersonality=yes
+MemoryDenyWriteExecute=yes
+RestrictNamespaces=yes
+RestrictRealtime=yes
+RestrictSUIDSGID=yes
+SystemCallArchitectures=native
+UMask=0077
 
 [Install]
 WantedBy=multi-user.target
