@@ -1,0 +1,39 @@
+time-services for Debian
+========================
+
+System user and RTC ownership
+----------------------------
+
+The daemon runs as the system user and group "_qcom-time", created during
+package configuration from /usr/lib/sysusers.d/time-services.conf. The
+executable is /usr/sbin/time_daemon.
+
+A udev rule gives /dev/rtc0 ownership root:_qcom-time and mode 0640. The
+daemon only reads the RTC using RTC_RD_TIME; it adjusts the system clock
+using settimeofday(2). The service grants CAP_SYS_TIME for these updates
+and restricts device access to reading /dev/rtc0.
+
+The rule matches add and change events. When udev is running, package
+configuration creates the account, reloads the rules and triggers a change
+event for rtc0, waiting for it to finish before starting the service.
+An installation into an offline filesystem applies the rule at boot.
+Administrators can override the packaged rule through /etc/udev/rules.d.
+
+State
+-----
+
+Time offsets are persisted in /var/lib/time, created by the service unit's
+StateDirectory= and owned by _qcom-time. The path is compiled into the
+daemon (OFFSET_LOCATION in time_genoff.h) and is not configurable.
+UMask=0077 makes newly created offset files readable and writable only by
+the service user. Existing files retain their permissions.
+
+Hardware requirements
+---------------------
+
+time_daemon talks to the modem over QMI and is useful on Qualcomm platforms
+with a modem exposing the QMI time service through libqmi-framework. Both
+the daemon and its service configuration select /dev/rtc0 explicitly.
+
+The daemon changes the system clock, so the package conflicts with other
+providers of time-daemon, including chrony and systemd-timesyncd.
