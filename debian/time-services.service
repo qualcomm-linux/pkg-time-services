@@ -3,15 +3,12 @@
 
 [Unit]
 Description=time serviced Service
-SourcePath=/usr/bin/time_daemon
-After= var-lib.mount mount-var-lib.service
 
 [Service]
 User=rtc
 Group=rtc
 StateDirectory=time
 Restart=on-failure
-RemainAfterExit=yes
 CapabilityBoundingSet=CAP_SYS_TIME
 AmbientCapabilities=CAP_SYS_TIME
 ExecStart=/usr/sbin/time_daemon
