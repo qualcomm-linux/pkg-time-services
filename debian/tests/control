@@ -1,0 +1,3 @@
+Tests: package-integration
+Depends: @, python3, systemd, udev
+Restrictions: superficial

@@ -1,0 +1,32 @@
+#!/usr/bin/python3
+"""Check installed integration without starting the clock-setting daemon."""
+
+import configparser
+import grp
+import os
+from pathlib import Path
+import pwd
+import shlex
+import subprocess
+
+
+unit_path = Path("/usr/lib/systemd/system/time-services.service")
+unit = configparser.ConfigParser(interpolation=None)
+unit.read_string(unit_path.read_text())
+service = unit["Service"]
+
+account = pwd.getpwnam(service["User"])
+group = grp.getgrnam(service["Group"])
+assert account.pw_gid == group.gr_gid, "Service user and group do not match"
+assert account.pw_uid != 0, "The daemon must not run as root"
+
+executable = shlex.split(service["ExecStart"])[0]
+assert os.access(executable, os.X_OK), f"Missing executable: {executable}"
+subprocess.run(["systemd-analyze", "verify", str(unit_path)], check=True)
+
+rule_path = Path("/usr/lib/udev/rules.d/60-time-services.rules")
+subprocess.run(["udevadm", "verify", str(rule_path)], check=True)
+assert f'GROUP="{group.gr_name}"' in rule_path.read_text(), \
+    "RTC rule does not grant access to the service group"
+
+print("Installed executable, service account, unit, and udev rule are consistent.")
