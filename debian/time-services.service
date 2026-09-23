@@ -5,8 +5,8 @@
 Description=time serviced Service
 
 [Service]
-User=rtc
-Group=rtc
+User=_qcom-time
+Group=_qcom-time
 StateDirectory=time
 Restart=on-failure
 CapabilityBoundingSet=CAP_SYS_TIME
