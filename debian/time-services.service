@@ -13,7 +13,6 @@ Restart=always
 RemainAfterExit=yes
 CapabilityBoundingSet=CAP_SYS_TIME
 AmbientCapabilities=CAP_SYS_TIME
-ExecStartPre=+mkdir -p /var/lib/time
 ExecStart=/usr/bin/time_daemon
 
 [Install]
