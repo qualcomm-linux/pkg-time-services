@@ -15,6 +15,15 @@ unit = configparser.ConfigParser(interpolation=None)
 unit.read_string(unit_path.read_text())
 service = unit["Service"]
 
+assert service.get("StateDirectory") == "time", \
+    "The daemon needs its persistent offset directory"
+assert "CAP_SYS_TIME" in service.get("AmbientCapabilities", "").split(), \
+    "The service must grant permission to adjust the system clock"
+assert service.get("CapabilityBoundingSet", "").split() == ["CAP_SYS_TIME"], \
+    "The service must retain only CAP_SYS_TIME"
+assert not service.getboolean("ProtectClock", fallback=False), \
+    "ProtectClock would prevent the daemon from adjusting the system clock"
+
 account = pwd.getpwnam(service["User"])
 group = grp.getgrnam(service["Group"])
 assert account.pw_gid == group.gr_gid, "Service user and group do not match"
