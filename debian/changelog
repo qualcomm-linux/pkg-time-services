@@ -1,8 +1,15 @@
 time-services (0.1.2-0qli+staging3~) UNRELEASED; urgency=medium
 
-  * Unreleased changes
+  [ Christopher Obbard ]
+  * d/gbp.conf: match the tag and branch names actually in use
+  * d/README.Debian: Add documentation.
+  * d/time-services.service: Documentation and hardening.
 
- -- Debusine Action Bot <noreply@bot.invalid>  Wed, 23 Sep 2026 13:11:52 +0000
+  [ Lukas Märdian ]
+  * d/control: Adopt Vcs-Git.
+  * d/tests: Check for service hardening.
+
+ -- Lukas Märdian <lukas.maerdian@oss.qualcomm.com>  Wed, 23 Sep 2026 15:37:40 +0200
 
 time-services (0.1.2-0qli+staging2) forky; urgency=medium
 
