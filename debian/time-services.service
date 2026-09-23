@@ -14,7 +14,7 @@ Restart=on-failure
 RemainAfterExit=yes
 CapabilityBoundingSet=CAP_SYS_TIME
 AmbientCapabilities=CAP_SYS_TIME
-ExecStart=/usr/bin/time_daemon
+ExecStart=/usr/sbin/time_daemon
 
 # Device access for RTC (read-only)
 DeviceAllow=/dev/rtc0 r
