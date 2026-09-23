@@ -20,6 +20,10 @@ Architecture: arm64
 Depends:
  ${misc:Depends},
  ${shlibs:Depends},
+Provides:
+ time-daemon,
+Conflicts:
+ time-daemon,
 Description: Qualcomm time daemon
  The time-services daemon synchronises time from the modem to the applications
  processor and maintains time offsets across reboots, once set from any source.
