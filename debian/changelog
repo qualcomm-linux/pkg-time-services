@@ -9,7 +9,10 @@ time-services (0.1.2-0qli+staging3~) UNRELEASED; urgency=medium
   * d/control: Adopt Vcs-Git.
   * d/tests: Check for service hardening.
 
- -- Lukas Märdian <lukas.maerdian@oss.qualcomm.com>  Wed, 23 Sep 2026 15:37:40 +0200
+  [ Agathe Porte ]
+  * Upstream links: s/quic/qualcomm/
+
+ -- Agathe Porte <agathe.porte@oss.qualcomm.com>  Mon, 05 Oct 2026 10:38:29 +0200
 
 time-services (0.1.2-0qli+staging2) forky; urgency=medium
 
