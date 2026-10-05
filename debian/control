@@ -13,7 +13,7 @@ Build-Depends-Arch:
  libqrtr-dev,
  pkgconf,
 Standards-Version: 4.7.4
-Homepage: https://github.com/quic/time-services
+Homepage: https://github.com/qualcomm/time-services
 Vcs-Git: https://github.com/qualcomm-linux/pkg-time-services.git
 Vcs-Browser: https://github.com/qualcomm-linux/pkg-time-services
 
